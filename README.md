@@ -102,9 +102,9 @@ List of falsey statements in JavaScript:
 
 **Common boolean operators for Conditionals**
 - < -- less than
-- > -- greater than
+- \> -- greater than
 - <= -- less than or equal to
-- >= -- greater than or equal to
+- \>= -- greater than or equal to
 - == -- is equal to value (Abstract Value Comparison)
 - === -- is equal to value and type (Strict Equality Comparison)
 - ! -- inverse (not)
@@ -121,15 +121,15 @@ console.log(3 === "3"); // false
 
 **Switch Case**
 
-> If you don't like creating huge complex if-else trees, consider learning switch-case statements.
+- If you don't like creating huge complex if-else trees, consider learning switch-case statements.
 
-> The switch statement executes a block of code depending on different cases.
+- The switch statement executes a block of code depending on different cases.
 
-> Use switch to select one of many blocks of code to be executed.
+- Use switch to select one of many blocks of code to be executed.
 
-> The switch statement evaluates an expression. The value of the expression is then compared with the values of each case in the structure. If the there is a match, the associated block of code is executed.
+- The switch statement evaluates an expression. The value of the expression is then compared with the values of each case in the structure. If the there is a match, the associated block of code is executed.
 
-> The switch statement is often used together with a break or a default keyword (or both).
+- The switch statement is often used together with a break or a default keyword (or both).
 
 ```javascript
 var a = 100;
