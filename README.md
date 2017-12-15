@@ -299,7 +299,7 @@ In ES6 the arrow functions are a concise way of writing anonymous functions. Arr
 We must put the script tag after the body so our HTML elements have time to load. If we run our script too early the document object won't be filled up by our HTML. This is why we use $(document).ready() with JQuery.
 
 Using the document object we can fetch a particular element by its unique id. See example:
-```
+```html
 <html>
 <body>
     <div id="message">
@@ -320,7 +320,7 @@ Using innerHTML we can actually force new information into the DOM. We can pass 
 **.createElement and .appendChild**
 
 .innerHTML isn't always the best way to add new HTML. When we modify it, that area of the DOM needs to be rebuilt on the fly. See example of using .createElement and .appendChild
-```
+```html
 <html>
 <body>
     <ol id="fruit">
@@ -343,7 +343,7 @@ Using innerHTML we can actually force new information into the DOM. We can pass 
 ## Objects
 **Introduction**
 
-As complexity of data increases so too is the need for organizing it. A **hash table** allows us to track data on a more granular level. In JavaScript the most common implementation of a hash table is the JavaScript object.
+As complexity of data increases so is the need for organizing it. A **hash table** allows us to track data on a more granular level. In JavaScript the most common implementation of a hash table is the JavaScript object.
 
 JavaScript objects are a set type that store key-value pairs. Different from an array, which simply indexes values. Most of what we see in JavaScript is created by objects.
 
@@ -508,3 +508,139 @@ Two takeways:
 - functions create their own scope and act like cages
 - assignments, or = signs act like anchors, they stay put no matter how the code is rearranged
 - let and const will throw an error if called before they get assigned
+
+# OOP (Object Oriented Programming)
+**Introduction**
+
+Understanding OOP principles is the key to making your code more organized and modular. 
+
+**JavaScript uses a functional programming style**. This means that Classes aren't a core part of the JavaScript language and JavaScript isn't inherently Object Oriented. However, we **pair JavaScript Objects and Functions to create Constructors that can mimic an Object Oriented Programming style**.
+
+## Constructors and new
+**Introduction**
+
+When talking about OOP we're really talking about classes. With a class, much like with a function, we can write reusable code and avoid repeating ourselves. Classes behave similarly as a car manufacturer. By using one class, we can create many identical copies, or **instances**, of whatever that class produces.
+
+**Constructor basics**
+
+In ES5 we have no ```class``` keyword. Instead we write functions that act as Object Constructors, or blueprints. Here's an example:
+```javascript
+function personConstructor(name, age) {
+    // an object literal that will be returned
+    const person = {};
+    // attributes of a person
+    person.name = name;
+    person.age = age;
+    // when attached to an object or instance, functions are called 'methods'.
+    // this is our first method, greet
+    person.greet = function(){
+        console.log("Hello my name is " + person.name + " and I am " + person.age + " years old!");
+    }
+    // finally, this function must return an instance
+    return person;
+}
+// create the 'steve' instance, run greet
+const steve = personConstructor("Steve", 27);
+steve.greet();
+// create the 'anika' instance, run greet. note that it is different.
+const anika = personConstructor("Anika", 33);
+anika.greet();
+// finally note how we can refine the greet method for any particular instance
+const emily = personConstructor("Emily", 22);
+emily.greet = function() {
+    console.log("I am the greatest, ever!");
+};
+emily.greet();
+```
+**An Object Constructor is a function that returns objects.** Every instance is unique and we can modify their methods at any time.
+
+**this and new**
+
+We can use the ```this``` keyword to store our attributes and methods and the ```new``` keyword to create new instances.
+```javascript
+function personConstructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.greet = function() {
+        console.log("Hello my name is " + this.name + " and I am " + this.age + " years old!");
+    }
+}
+```
+In the above example ```this``` will refer to each individual instance when the Object Constructor is run. Without returning an object literal by default it seems like our constructor is no longer constructing. ```new``` creates and instance of the object. Remember ```this``` and ```new``` go together. If you're using ```this``` in your Constructor, you **must** create new instances with ```new```!
+
+**Scope and this**
+
+When you see:
+```javascript
+console.log(this)
+```
+What you should be seeing is the window object. ```this``` always refers to its immediate parent, the context in which it is called. By not having a function or an object, ```this``` defaults to whatever its current parent scope is.
+
+**Privacy**
+
+Using hoisting rules of ES5 within scope we can leverage this to create private variables within our Object Constructor.
+```javascript
+// the naming convention for Classes and Object Constructors is that they're capitalized and singular
+function Person(name, age) {
+    const privateVariable = "This variable is private";
+    const privateMethod = function() {
+        console.log(this);
+    }
+    this.name = name;
+    this.age = age;
+    this.greet = function() {
+        console.log("Hello my name is " + this.name + " and I am " + this.age + " years old!");
+    }
+}
+const eliza = new Person("Eliza", 48);
+console.log(eliza.privateVariable);
+// undefined!
+```
+We cannot access the private methods, the next example shows how:
+```javascript
+function Person(name, age) {
+    const privateVariable = "This variable is private";
+    const privateMethod = function() {
+        console.log(this);
+    }
+    this.name = name;
+    this.age = age;
+    this.greet = function() {
+        console.log("Hello my name is " + this.name + " and I am " + this.age + " years old!");
+        // we can access our attributes within the constructor!
+        console.log("Also my privateVariable says: " + privateVariable)
+        // we can access our methods within the constructor!
+        privateMethod(); // however this refers to the window
+    }
+}
+const joe = new Person("Joe", 23);
+joe.greet();
+```
+**The ```this``` keyword is still referring to the window!** When we attach methods and attributes to ```this``` they remain accessible. However, the moment we run ```pirvateMethod``` we create a new scope and the context of ```this``` changes.
+
+**The 'this' problem workaround**
+
+Storing reference to ```this``` helps solve scoping problems with private methods.
+```javascript
+function Person(name, age) {
+    // create a private variable that stores a reference to the new object we create
+    const self = this;
+    const privateVariable = "This variable is private";
+    const privateMethod = function() {
+        console.log("this is a private method for " + self.name);
+        console.log(self);
+    }
+    this.name = name;
+    this.age = age;
+    this.greet = function() {
+        console.log("Hello my name is " + this.name + " and I am " + this.age + " years old!");
+        // we can access our attributes within the constructor!
+        console.log("Also my privateVariable says: " + privateVariable)
+        // we can access our methods within the constructor!
+        privateMethod();
+    }
+}
+const joe = new Person("Joe", 23);
+joe.greet();
+```
+We create a private variable called ```self``` that retains the reference to the object we just constructed. Now we can use ```self``` in place of ```this``` within private methods to avoid losing access to ```this```.
