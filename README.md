@@ -42,6 +42,7 @@ Variables can hold any kind of JavaScript datatype. The list includes:
 - References
 
 **Passed by Reference**
+
 In JavaScript, variables are passed by reference. Consider the below example:
 ```javascript
 var x = [1,2,3];
@@ -60,3 +61,153 @@ Conventional wisdom would say that variable x now contains [1,2,3, 'Hello world!
 
 **const**
 > const is used for declaring constants. This is for when you need to store information that should never be updated.
+
+## Strings
+**Introduction**
+
+> Strings are one of the most useful data types in any language we work with. 
+
+**ES6 String Interpolation**
+```javascript
+let firstName = "Oscar";
+let lastName = "Vazquez";
+let message = `Hello, my name is ${firstName} ${lastName}`;
+```
+
+**Special Characters**
+
+- "\n" - creates a new line
+- "\t" - creates a horizontal tab
+- "\v" - creates a vertical tab
+- "\u" - pass in unicode
+
+## Conditionals
+**Most common types of conditionals**
+
+- **if** - runs the code block if the specified condition evaluates true
+- **else** - second part of 'if', runs if the first conditional evaluates false
+- **else if** - specifies a new condition after an 'if' or another 'if else', only evaluates if the prior conditional is false
+
+**The Truth**
+
+The question we ask inside our conditional can only be answered with being true or being false.
+
+List of falsey statements in JavaScript:
+- false
+- null
+- undefined
+- 0
+- NaN
+- ""
+
+**Common boolean operators for Conditionals**
+- < -- less than
+- > -- greater than
+- <= -- less than or equal to
+- >= -- greater than or equal to
+- == -- is equal to value (Abstract Value Comparison)
+- === -- is equal to value and type (Strict Equality Comparison)
+- ! -- inverse (not)
+- || -- or
+- && -- and
+
+> Extra Notes on == vs ===
+
+> The Abstract equality comparison performs a type conversion. While the Strict comparison checks **type**.
+```javascript
+console.log(3 == "3"); // true
+console.log(3 === "3"); // false
+```
+
+**Switch Case**
+
+> If you don't like creating huge complex if-else trees, consider learning switch-case statements.
+
+> The switch statement executes a block of code depending on different cases.
+
+> Use switch to select one of many blocks of code to be executed.
+
+> The switch statement evaluates an expression. The value of the expression is then compared with the values of each case in the structure. If the there is a match, the associated block of code is executed.
+
+> The switch statement is often used together with a break or a default keyword (or both).
+
+```javascript
+var a = 100;
+var b = NaN;
+switch (true) {
+  case isNaN(a) || isNaN(b):
+    console.log('NaNNaN');
+    break;
+  case a === b:
+    console.log(0);
+    break;
+  case a < b:
+    console.log(-1);
+    break;
+  default:
+    console.log(1);
+}
+```
+
+## Arrays
+**Introduction**
+
+> Arrays are important for grouping data and keeping it in a particular indexed order. We can imagine arrays as being like filing cabinets, with each drawer labeled with a number, or an index. Arrays have a **zero-based index** which means our indexes start at 0!
+
+**Array Basics**
+- .push() -- adds a new element to the end of an array
+- .pop() -- removes an element at the end of the array
+- [index] -- the index allows us to examine a single element of our array
+- .length -- allows us to check how many elements our array has
+
+Check out https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array for more information and all Methods.
+
+*Last note: In JavaScript, Arrays are actually object. This makes it tricky to identify if a variable is an array or not because often times it will get identified as an object.*
+
+# Loops
+**Introduction**
+
+> Loops are programming constructs that allow us to repeat or 'loop' instructions to the computer. At a very basic level loops keep us from repeating ourselves.
+
+### Types of Loops
+**for**
+> The basic for loop is good for when you know exactly how many times your code should run.
+
+**while**
+> A while loop is great for when we don't know how many times we want to repeat our code. You can think of a while loop as the middle ground between a for loop and an if statement. It is a single condition, and while it remains true, the body of the loop will keep running.
+
+**do/while**
+> Very similar to the while loop, a do/while loop iterates **before** the condition is checked. See example below:
+```javascript
+let num = 6;
+do {
+    console.log("I'm counting! The number is " + num);
+    num = num + 1;
+}
+while (num < 6);
+console.log("We are done. Goodbye world!");
+```
+
+### Break & Continue
+**break**
+> For when we need to break out of a loop early.
+```javascript
+let names = ['Anna', 'Oscar', 'Kadie', 'Steve', 'Elle', 'Boris', 'Lord Humongous'];
+for(let i = 0; i < names.length; i++){
+    if(names[i] === 'Kadie'){
+        console.log('Kadie is in our array!');
+        break;
+    }
+}
+console.log('We finished looping!');
+```
+
+**continue**
+> We can use the keyword continue to force our loop onto the next interation.
+```javascript
+let names = ['Anna', 'Oscar', 'Kadie', 'Steve', 'Elle', 'Boris', 'Lord Humongous'];
+for(let i = 0; i < names.length; i++){
+    if(names[i] === 'Steve'){ continue };
+    console.log(names[i]);
+};
+```
