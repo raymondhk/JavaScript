@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Dojo Mail</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Importance</th>
+              <th>Subject</th>
+              <th>Content</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let val of data'>
+              <td>{{val.email | lowercase}}</td>
+              <td *ngIf='val.important'>High</td>
+              <td *ngIf='!val.important'>Low</td>
+              <td>{{val.subject}}</td>
+              <td>{{val.content}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+</div>
+

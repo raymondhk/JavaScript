@@ -692,4 +692,4 @@ MyObjConstructor.prototype.methodName = function() {
 
 Adding methods to the shared prototype will improve performance of our code significantly when creating thousands of instances. However, on a smaller scale it is better to balance **readability**.
 
-[Practical work with classes](javascript_fundamentals/ninjas.js)
+[Practical work with classes](concepts/ninjas.js)
