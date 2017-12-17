@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h1>Random Barcode Generator</h1>
+    </div>
+  </div>
+  <br>
+  <div class='row'>
+    <div class='col-md-12 boxes'>
+      <div *ngFor="let x of arr" class='box' [ngStyle]="{'background-color': x}"></div>
+    </div>
+  </div>
+</div>
