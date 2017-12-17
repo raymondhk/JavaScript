@@ -568,7 +568,7 @@ function personConstructor(name, age) {
 ```
 In the above example ```this``` will refer to each individual instance when the Object Constructor is run. Without returning an object literal by default it seems like our constructor is no longer constructing. ```new``` creates and instance of the object. Remember ```this``` and ```new``` go together. If you're using ```this``` in your Constructor, you **must** create new instances with ```new```!
 
-**Scope and this**
+## Scope and this
 
 When you see:
 ```javascript
@@ -644,3 +644,52 @@ const joe = new Person("Joe", 23);
 joe.greet();
 ```
 We create a private variable called ```self``` that retains the reference to the object we just constructed. Now we can use ```self``` in place of ```this``` within private methods to avoid losing access to ```this```.
+
+We can additionally *chain* methods together by returning ```this```. Essentially whenever we tell a public or prototype method to ```return this```, we're asking for the entire object back, this lets us chain function calls together.
+
+**.prototype**
+
+In JavaScript all objects have prototype that they inherit methods and properties from. Check out the example below:
+```javascript
+const MyObjConstructor = function(name) {
+  const myPrivateVar = "Hello"; // just to show that it is hard to see this private var easily
+  this.name = name; // but you can see the name!
+  this.method = function() {
+    console.log( "I am a method");
+  };
+}
+const obj1 = new MyObjConstructor('object1');
+const obj2 = new MyObjConstructor('object2');
+console.log(obj1); // we are able to see our object
+obj1.newProperty = "newProperty!";
+obj1.__proto__.anotherProperty = "anotherProperty!";
+console.log(obj1.anotherProperty); // anotherProperty!
+console.log(obj1.newProperty); // newProperty!
+// What about obj2?
+console.log(obj2.newProperty); // undefined
+console.log(obj2.anotherProperty); // anotherProperty! <= THIS IS THE COOL PART!
+```
+```__proto__``` stands for **prototype** which is how objects in JavaScript share properties and methods. You can set a new property which only obj1 can access and obj2 cannot. However if you access ```___proto___``` on one object it will affect both!
+
+This is because they both share a **prototype** object since they're both instances of **MyObjConstrutor**. This is how JavaScript does inheritance! Every object constructor creates a second memory space for *all* objects created by that constructor that is accessed by **proto**. It is one memory space, so any changes there affect every object spit out by that constructor.
+
+**Major PROS of Prototype**
+- one memory space for all! If you are creating lots of the same object and use prototype, it can save you significant memory
+- great for general methods for objects
+- we can access **prototype** methods with just using .method or .property
+- the interpreter will go through all **prototypes** in the prototype chain to check if any of them have the called method or property before giving up (it'll return/use the first match it finds)
+
+**Major CONS of Prototype**
+- methods generated in prototype cannot access the private variables inside the constructor function
+- lots of prototypes can be hard to read
+
+The above way is bad practice, this is how we should be doing it:
+```javascript
+MyObjConstructor.prototype.methodName = function() {
+  //do stuff here!
+}
+```
+
+Adding methods to the shared prototype will improve performance of our code significantly when creating thousands of instances. However, on a smaller scale it is better to balance **readability**.
+
+[Practical work with classes](javascript_fundamentals/ninjas.js)
