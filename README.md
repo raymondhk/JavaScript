@@ -692,4 +692,48 @@ MyObjConstructor.prototype.methodName = function() {
 
 Adding methods to the shared prototype will improve performance of our code significantly when creating thousands of instances. However, on a smaller scale it is better to balance **readability**.
 
+## ES6 Classes
+**Introduction**
+With ES6 JavaScript developers now have access to the ```class``` keyword. However: **ES6 Classes are just syntatic wrappers around the Object Constructors mentioned above.** Under the hood Classes and Object Constructors largely behave the same way. An Example of ES6 Class:
+```javascript
+class Dot {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        console.log('You created a Dot!')
+    }
+}
+let dot1 = new Dot(10,10);
+```
+**Note: Classes are NOT hoisted. No matter what, the class keyword will stay where it was written and not move during interpretation**
+
+More examples:
+ES5 vs ES6
+```javascript
+// Old ES5 way
+function Dot(x, y) {
+    this.x = x;
+    this.y = y;
+}
+Dot.prototype.showLocation = function() {
+    console.log("This Dot is at x " + this.x + " and y " + this.y);
+}
+const dot1 = new Dot(55, 20);
+dot1.showLocation();
+// New ES6 way
+class Dot {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    showLocation() {
+        // ES6 String Interpolation!
+        console.log(`This Dot is at x ${this.x} and y ${this.y}`);
+    }
+}
+const dot2 = new Dot(5, 13);
+dot2.showLocation();
+```
+
 [Practical work with classes](concepts/ninjas.js)
+[Questions](questions.md)

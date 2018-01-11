@@ -1,0 +1,22 @@
+<div class='row'>
+  <div class='col-md-12 text-center'><h1>Registration</h1></div>
+</div>
+<br>
+<div class='row'>
+  <div class='col-md-4'></div>
+  <div class='col-md-4'>
+    <form #userForm='ngForm' (submit)='registerUser(userForm)' novalidate>
+      <div class='form-group'>
+        <input type='text' name='name' placeholder='Name' class='form-control' [(ngModel)]='user.name' #title='ngModel' required minlength="2"/>
+      </div>
+      <div class='form-group'>
+        <input type='email' name='email' placeholder='Email' class='form-control' [(ngModel)]='user.email' #title='ngModel' required />
+      </div>
+      <div class='form-group'>
+        <input type='password' name='password' placeholder='Password' class='form-control' [(ngModel)]='user.password' #title='ngModel' required minlength="2"/>
+      </div>
+      <button type='submit' class='btn btn-primary pull-right'>Register</button>
+    </form>
+  </div>
+  <div class='col-md-4'></div>
+</div>
