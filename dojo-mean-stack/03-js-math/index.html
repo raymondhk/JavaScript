@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Math 1
+    function zero_negativity(arr){
+        var flag = true;
+        for(var i = 0; i < arr.length; i++){
+            if(arr[i] < 0){
+                flag = false
+            }
+        }
+        return flag;
+    }
+    let test1 = zero_negativity([1,2,3,4])
+    console.log(test1)
+    let test2 = zero_negativity([1,2,3,-4])
+    console.log(test2)
+
+    // Math 2
+    function is_even(num){
+        var flag = true;
+        if(num % 2 != 0){
+            flag = false;
+        }
+        return flag;
+    }
+    let test3 = is_even(2)
+    console.log(test3)
+    let test4 = is_even(3)
+    console.log(test4)
+
+    // Math 3
+    function how_many_even(arr){
+        var count = 0;
+        for(var j = 0; j < arr.length; j++){
+            if(is_even(arr[j])){
+                count += 1;
+            } 
+        }
+        return count;
+    }
+    let test5 = how_many_even([2,2,2,2,2])
+    console.log(test5)
+    let test6 = how_many_even([1,1,1,1])
+    console.log(test6)
+
+    // Math 4
+    function create_dummy_array(n){
+        var arr = [];
+        for(var k = 0; k < n; k++){
+            arr.push(Math.floor(Math.random()*10));
+        }
+        return arr;
+    }
+    let test7 = create_dummy_array(5)
+    console.log(test7)
+
+    // Math 5
+    function random_choice(arr){
+        var num = arr[Math.floor(Math.random()*arr.length)]
+        return num
+    }
+    let test8 = random_choice([20,15,3,-4,8,200])
+    console.log(test8)
+</script>
+</html>
