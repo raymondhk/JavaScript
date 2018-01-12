@@ -1,0 +1,22 @@
+*
+{
+    font-family: 'Quicksand', sans-serif;
+}
+.error
+{
+    background-color: #B02C0C;
+    border-radius: 5px;
+    /* height: 150px;
+    width: 150px; */
+    color: white;
+    padding: 50px;
+}
+.success
+{
+    background-color: #006914;
+    border-radius: 5px;
+    /* height: 150px;
+    width: 150px; */
+    color: white;
+    padding: 50px;
+}

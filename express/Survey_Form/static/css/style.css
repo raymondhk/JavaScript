@@ -1,0 +1,16 @@
+*
+{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.header
+{
+    margin-bottom: 50px;
+}
+
+.survey-form
+{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 20px;
+}
