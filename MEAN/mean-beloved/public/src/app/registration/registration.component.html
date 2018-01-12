@@ -1,0 +1,49 @@
+
+    <div class="card login-card">
+      <div class="card-content">
+        <span class="card-title berk-text">Beloved DC</span>
+        <br>
+        <span class="sign-in">Registration</span>
+        <br>
+        <br>
+        <!-- Email Login Form -->
+        <form #registerForm="ngForm" (submit)="register(registerForm)" novalidate>
+            <div class="row">
+
+              <div class="input-field col s12">
+                <input id="first" name="first" type="text" class="validate" required minlength="2" maxlength="24" [(ngModel)]="user.first" #first="ngModel">
+                <label for="first" data-error="Should be at least 2 characters and no more than 24 characters">* First Name</label>
+              </div>
+
+              <div class="input-field col s12">
+                <input id="last" name="last" type="text" class="validate" required minlength="2" maxlength="24" [(ngModel)]="user.last" #last="ngModel">
+                <label for="last" data-error="Should be at least 2 characters and no more than 24 characters">* Last Name</label>
+              </div>
+
+              <div class="input-field col s12">
+                <input id="email" name="email" type="email" class="validate" required [(ngModel)]="user.email" #email="ngModel">
+                <label for="email" data-error="Please enter a valid email address">* Email</label>
+              </div>
+
+              <div class="input-field col s12">
+                <input id="password" name="password" type="password" class="validate" required minlength="2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="user.password" #password="ngModel">
+                <label for="password" data-error="Must have one uppercase, one lowercase, and one number">* Password</label>
+              </div>
+
+              <div class="input-field col s12">
+                <input id="confirm" name="confirm" type="password" class="validate" required [(ngModel)]="user.confirm" #confirm="ngModel">
+                <label for="confirm">* Confirm Password</label>
+              </div>
+
+              <span class="star">* indicates required fields</span>
+
+              <button class="btn waves-effect waves-light blue darken-3 right login-submit" type="submit" name="action" [disabled]="!registerForm.form.valid">Submit
+                <i class="material-icons right">send</i>
+              </button>
+
+            </div>
+        </form>
+
+        <p>Already Registered? <a [routerLink]="['']">Login Here</a></p>
+      </div>
+    </div>

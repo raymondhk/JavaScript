@@ -1,0 +1,30 @@
+
+.login-card
+{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  margin-left: -250px;
+  margin-top: -50px;
+  width: 500px;
+  padding: 20px
+}
+
+.sign-in
+{
+  font-weight: 300;
+  font-size: 20pt;
+  margin-bottom: -10px;
+}
+
+.sign-in-tag
+{
+  margin-top: -10px;
+}
+
+.login-submit
+{
+  margin-top: 30px;
+  margin-right: 10px
+}
+
